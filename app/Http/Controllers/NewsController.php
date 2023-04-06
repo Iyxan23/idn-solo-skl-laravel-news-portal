@@ -138,7 +138,7 @@ class NewsController extends Controller
         }
 
         if ($news) {
-            return redirect()->route('news.index')->with([
+            return redirect()->route('admin.news.index')->with([
                 Alert::success("Success", "Updated the news $news->title")
             ]);
         }
@@ -156,8 +156,15 @@ class NewsController extends Controller
         Storage::disk('local')->delete('public/news/' . basename($news->image));
         $news->delete();
 
-        return redirect()->route('news.index')->with([
+        return redirect()->route('admin.news.index')->with([
             Alert::success("Success", "Successfully deleted $news->name")
         ]);
+    }
+
+    public function searchNews(Request $request) {
+        $keyword = $request->keyword;
+        $news = News::where('title', 'like', '%' . $keyword . '%')->paginate(10);
+
+        return view('admin.news.index', compact('news', 'keyword'));
     }
 }

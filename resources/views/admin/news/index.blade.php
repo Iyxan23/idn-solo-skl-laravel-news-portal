@@ -24,12 +24,23 @@
                 </div>
             @endforeach
         @endif
+        
+        <form action="{{ route('news.search') }}" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search input" aria-describedby="button-search" name="keyword">
+                <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+            </div>
+        </form>
 
         <!-- Create Modal -->
         <a href="{{ route('news.create') }}" class="btn btn-primary">
             <i class="bi bi-plus-lg"></i> Add News
         </a>
         <!-- End Create Modal-->
+
+        @isset($keyword)
+        <p class="mt-3">Showing results for '{{ $keyword }}'</p>
+        @endisset
 
         <!-- Table with stripped rows -->
         <table class="table table-striped">
@@ -44,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($news as $row)
+            @forelse ($news as $row)
                 <tr>
                     <td scope="row">{{ $loop->iteration }}</td>
                     <td><a href="{{ route('news.show', $row->id) }}">{{ $row->title }}</a></td>
@@ -72,7 +83,15 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr><td colspan="6">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-octagon me-1"></i>
+                        Data is empty
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div> 
+                </td></tr>
+            @endforelse
         </tbody>
         </table>
         <!-- End Table with stripped rows -->
