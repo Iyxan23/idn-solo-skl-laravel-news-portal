@@ -25,11 +25,17 @@
             
             <!-- ======= Search Form ======= -->
             <div class="search-form-wrap js-search-form-wrap">
-                <form action="search-result.html" class="search-form">
+                <form action="{{ route('search.end-news') }}" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search input" aria-describedby="button-search" name="keyword">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+                    </div>
+                </form>
+                {{-- <form action="search-result.html" class="search-form">
                     <span class="icon bi-search"></span>
                     <input type="text" placeholder="Search" class="form-control">
                     <button class="btn js-search-close"><span class="bi-x"></span></button>
-                </form>
+                </form> --}}
             </div><!-- End Search Form -->
             
         </div>

@@ -48,4 +48,16 @@ class FrontendController extends Controller
 
         return view('frontend.news-detail', compact('news', 'category', 'nav_category', 'side_news', 'title'));
     }
+
+    public function searchNewsEnd(Request $request) {
+        $keyword = $request->keyword;
+        $news = News::where('title', 'like', '%' . $keyword . '%')->paginate(10);
+        $nav_category = Category::all();
+        $side_news = News::inRandomOrder()->limit(5)->get();
+        $slider = Slider::latest()->get();
+        $title = "IDNesianNews - Homepage";
+
+        // return view('frontend.index', compact('news'));
+        return view('frontend.index', compact('nav_category', 'news', 'side_news', 'slider', 'title'));
+    }
 }

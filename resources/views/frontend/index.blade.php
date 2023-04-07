@@ -34,7 +34,7 @@
 
     <h3 class="category-title">Latest News</h3>
 
-    @foreach ($news as $row)
+    @forelse ($news as $row)
     <div class="d-md-flex post-entry-2 small-img">
         <a href="{{ route('detail.news', $row->slug) }}" class="me-4 thumbnail">
             <img src="{{ $row->image }}" alt="" class="img-fluid">
@@ -51,7 +51,9 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @empty
+        No news published
+    @endforelse
 
     <!-- Paging -->
     <div class="text-start py-4">

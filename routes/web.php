@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->name('index');
 Route::get('/detail/category/{slug}', [App\Http\Controllers\FrontendController::class, 'detailCategory'])->name('detail.category');
 Route::get('/detail/news/{slug}', [App\Http\Controllers\FrontendController::class, 'detailNews'])->name('detail.news');
+Route::get('/search-news-end', [App\Http\Controllers\FrontendController::class, 'searchNewsEnd'])->name('search.end-news');
 
 Auth::routes();
 
