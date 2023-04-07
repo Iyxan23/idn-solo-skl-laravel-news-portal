@@ -138,7 +138,7 @@ class NewsController extends Controller
         }
 
         if ($news) {
-            return redirect()->route('admin.news.index')->with([
+            return redirect()->route('news.index')->with([
                 Alert::success("Success", "Updated the news $news->title")
             ]);
         }
@@ -156,7 +156,7 @@ class NewsController extends Controller
         Storage::disk('local')->delete('public/news/' . basename($news->image));
         $news->delete();
 
-        return redirect()->route('admin.news.index')->with([
+        return redirect()->route('news.index')->with([
             Alert::success("Success", "Successfully deleted $news->name")
         ]);
     }

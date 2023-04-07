@@ -19,9 +19,9 @@ class FrontendController extends Controller
         $news = News::latest()->get();
         $nav_category = Category::all();
         $side_news = News::inRandomOrder()->limit(5)->get();
-        $slider = Slider::latest()->get();
+        $slider = Slider::all();
         $title = "IDNesianNews - Homepage";
-        
+
         // return view('welcome', compact('category', 'news'));
         // return view('frontend.index', compact('category', 'news'));
         return view('frontend.index', compact('nav_category', 'news', 'side_news', 'slider', 'title'));
