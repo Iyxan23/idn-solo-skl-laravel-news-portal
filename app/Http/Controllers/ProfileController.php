@@ -30,13 +30,19 @@ class ProfileController extends Controller
         $curPasswordStatus = Hash::check($request->current_password, auth()->user()->password);
 
         if ($curPasswordStatus) {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->password = Hash::make($request->new_password);
-            $user->save();
+            if ($request->password === $request->confirmation_password) {
+                $user = User::findOrFail(Auth::user()->id);
+                $user->password = Hash::make($request->new_password);
+                $user->save();
 
-            return redirect()->back()->with([
-                Alert::success("Success", "Password successfully updated")
-            ]);
+                return redirect()->back()->with([
+                    Alert::success("Success", "Password successfully updated")
+                ]);
+            } else {
+                return redirect()->back()->with([
+                    Alert::error("Incorrect password", "Your confirmation password does not match with the new password you provided")
+                ]);
+            }
         } else {
             return redirect()->back()->with([
                 Alert::error("Incorrect password", "Your provided pasword does not match with your current password")
