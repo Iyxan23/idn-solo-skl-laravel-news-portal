@@ -63,7 +63,7 @@
                     <td>
                         <img src="{{ $row->image }}" alt="" class="w-25">
                     </td>
-                    <td>{{ $row->date_created }}</td>
+                    <td>{{ $row->created_at }}</td>
                     <td>
                         <a href="{{ route('news.show', $row->id) }}" class="btn btn-primary">
                             <i class="bi bi-eye-fill"></i>

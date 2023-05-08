@@ -62,43 +62,43 @@
 
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
                 <h5 class="card-title">About</h5>
-                <p class="small fst-italic">Jelek banget</p>
+                <p class="small fst-italic">Hello world!</p>
 
                 <h5 class="card-title">Profile Details</h5>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                  <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                  <div class="col-lg-9 col-md-8">Nur Ihsan Al Ghfiari</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Company</div>
-                  <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                  <div class="col-lg-9 col-md-8">IDN Boarding School Solo</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Job</div>
-                  <div class="col-lg-9 col-md-8">Web Designer</div>
+                  <div class="col-lg-9 col-md-8">Programmer</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Country</div>
-                  <div class="col-lg-9 col-md-8">USA</div>
+                  <div class="col-lg-9 col-md-8">Indonesia</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Address</div>
-                  <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                  <div class="col-lg-9 col-md-8">Karanganyar, Ngargoyoso, Tambak, Berjo</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Phone</div>
-                  <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                  <div class="col-lg-9 col-md-8">0896-1111-2222</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                  <div class="col-lg-9 col-md-8">nurihsan.idn@gmail.com</div>
                 </div>
 
               </div>

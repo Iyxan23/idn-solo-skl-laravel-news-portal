@@ -74,3 +74,13 @@ Route::get('/view-clear', function () {
     Artisan::call('view:clear');
     return 'View cache has been cleared';
 });
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate:fresh');
+    return 'Migrated';
+});
+
+Route::get('/seed-user', function () {
+    Artisan::call('db:seed', ['--class=UserSeeder']);
+    return 'Seeded';
+});
