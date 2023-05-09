@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -91,5 +92,45 @@ class AuthController extends Controller
     {
         $token = $request->user()->currentAccessToken()->delete();
         return ResponseFormatter::success($token, 'Token revoked');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        try {
+            // $request->validate([
+            //     'new_password' => 'required|string|min:8'
+            // ]);
+
+            // with Validator
+            $validator = Validator::make($request->all(), [
+                // I felt like these fields are useless, since the user is already logged in with
+                // a token. But it's included within the IT class so someone might need this. 
+
+                // 'current_password' => 'required|string',
+                'new_password' => 'required|string|min:8',
+                // 'confirmation_password' => 'required|string|min:8',
+            ]);
+
+            // when the validator failed
+            if ($validator->fails()) {
+                return ResponseFormatter::error(null, 'Invalid arguments given');
+            }
+
+            $user = User::find(Auth::id());
+            $user->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+            $user->save();
+
+            $token = $request->user()->currentAccessToken()->delete();
+            $new_token = $user->createToken('authToken')->plainTextToken;
+
+            return ResponseFormatter::success([
+                'revoked_token' => $token,
+                'new_token' => $new_token,
+            ], 'Password updated');
+        } catch (\Error $err) {
+            return ResponseFormatter::error($err, "Couldn't change password", 500);
+        }
     }
 }
