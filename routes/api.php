@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
 Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register']);
 Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->middleware('auth:sanctum');
-Route::post('update_password', [App\Http\Controllers\API\AuthController::class, 'updatePassword'])->middleware('auth:sanctum');
+Route::put('update_password', [App\Http\Controllers\API\AuthController::class, 'updatePassword'])->middleware('auth:sanctum');
 
 Route::get('user/all', [App\Http\Controllers\API\UserController::class, 'getAllUser']);
 Route::get('user/{id}', [App\Http\Controllers\API\UserController::class, 'getUserById']);
@@ -29,8 +29,13 @@ Route::get('user/{id}', [App\Http\Controllers\API\UserController::class, 'getUse
 Route::get('category/all', [App\Http\Controllers\API\CategoryController::class, 'getAllCategories']);
 Route::get('category/paged', [App\Http\Controllers\API\CategoryController::class, 'getCategoriesPaged']);
 Route::post('category/create', [App\Http\Controllers\API\CategoryController::class, 'create'])->middleware('auth:sanctum');
+Route::delete('category/delete', [App\Http\Controllers\API\CategoryController::class, 'delete'])->middleware('auth:sanctum');
+Route::delete('category/update/{id}', [App\Http\Controllers\API\CategoryController::class, 'update'])->middleware('auth:sanctum');
 
 Route::get('category/{id}', [App\Http\Controllers\API\CategoryController::class, 'getCategoryById']);
 
 Route::get('slider/all', [App\Http\Controllers\API\SliderController::class, 'getAllSliders']);
 Route::post('slider/create', [App\Http\Controllers\API\SliderController::class, 'create'])->middleware('auth:sanctum');
+Route::delete('slider/delete', [App\Http\Controllers\API\SliderController::class, 'delete'])->middleware('auth:sanctum');
+
+Route::get('slider/{id}', [App\Http\Controllers\API\SliderController::class, 'getSliderById']);

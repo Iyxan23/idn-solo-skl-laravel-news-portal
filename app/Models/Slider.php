@@ -11,12 +11,16 @@ class Slider extends Model
     use HasFactory;
 
     protected $fillable = [
-        'image', 'url', 'title', 'description'
+        'image',
+        'url',
+        'title',
+        'description'
     ];
 
-    protected function image(): Attribute {
+    protected function image(): Attribute
+    {
         return Attribute::make(
-            get: fn ($value) => asset('/storage/slider/' . $value)
+        get: fn($value) => asset('/storage/sliders/' . $value)
         );
     }
 }

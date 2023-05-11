@@ -41,7 +41,7 @@ class SliderController extends Controller
     {
         // upload image
         $image = $request->file('image');
-        $image->storeAs('/public/slider/', $image->hashName());
+        $image->storeAs('/public/sliders/', $image->hashName());
 
         Slider::create([
             'url' => $request->url,
@@ -99,11 +99,11 @@ class SliderController extends Controller
             ]);
         } else {
             // delete the previous image
-            Storage::disk('local')->delete('public/slider/' . basename($slider->image));
+            Storage::disk('local')->delete('public/sliders/' . basename($slider->image));
 
             // upload the new image
             $image = $request->file('image');
-            $image->storeAs('public/slider', $image->hashName());
+            $image->storeAs('public/sliders', $image->hashName());
 
             // update with the new image
             $slider = Slider::findOrFail($slider->id);
@@ -128,7 +128,7 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        Storage::disk('local')->delete('public/slider/' . basename($slider->image));
+        Storage::disk('local')->delete('public/sliders/' . basename($slider->image));
         $slider->delete();
 
         return redirect()->route('slider.index')->with([
