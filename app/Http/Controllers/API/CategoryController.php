@@ -8,7 +8,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 class CategoryController extends Controller
 {
@@ -26,6 +25,7 @@ class CategoryController extends Controller
         }
     }
 
+    // what's the difference between this and show()?
     public function getCategoryById(int $id)
     {
         try {
@@ -137,6 +137,17 @@ class CategoryController extends Controller
             }
         } catch (\Error $err) {
             return ResponseFormatter::error($err, "Failed to update the given category", 500);
+        }
+    }
+
+    public function show(int $id)
+    {
+        try {
+            $category = Category::findOrFail($id);
+
+            return ResponseFormatter::success($category, "Successfully shown the category");
+        } catch (\Error $err) {
+            return ResponseFormatter::error($err, "Failed to retrieve the given category", 400);
         }
     }
 }

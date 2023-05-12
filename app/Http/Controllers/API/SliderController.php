@@ -78,11 +78,10 @@ class SliderController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
         try {
             $this->validate($request, [
-                'id' => 'required',
                 'image' => 'mimes:png,jpg,jpeg',
                 'url' => 'string',
                 'title' => 'string',
